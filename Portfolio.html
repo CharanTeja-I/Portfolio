@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inti Charan Teja - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 1rem;
+        }
+        
+        .header-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .contact-info a:hover {
+            opacity: 0.8;
+        }
+        
+        section {
+            padding: 3rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: var(--primary);
+            margin: 0.5rem auto;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            top: 15px;
+            right: -10px;
+            transform: rotate(45deg);
+            box-shadow: 3px -3px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::after {
+            left: -10px;
+            right: auto;
+            box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .skill-category h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            background: var(--light);
+            margin-bottom: 0.5rem;
+            padding: 0.8rem;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .certifications {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .cert-card {
+            background: white;
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cert-card h3 {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .objective-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        footer {
+            background: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-content::after {
+                left: -10px;
+                right: auto;
+                box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <img src="imgg.jpg" alt="Charan Teja" class="profile-img">
+            <div class="header-content">
+                <h1>INTI CHARAN TEJA</h1>
+                <p class="tagline">Product Success & Customer Experience Enthusiast</p>
+                <div class="contact-info">
+                    <a href="tel:+919381157577"><i class="fas fa-phone"></i> +91 9381157577</a>
+                    <a href="mailto:charantejaintiyht@gmail.com"><i class="fas fa-envelope"></i> charantejaintiyht@gmail.com</a>
+                    <a href="https://www.linkedin.com/in/charan-teja-i-887177258/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="card">
+                    <p>Enthusiastic and adaptable undergraduate seeking a Product Success Intern role to gain hands-on experience in customer success and product adoption. Eager to learn, contribute to team goals, and develop strong problem-solving and communication skills while supporting user satisfaction.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Bachelor of Technology in Information Technology</h3>
+                        <p><strong>Aditya Engineering College</strong>, Surampalem, Andhra Pradesh</p>
+                        <p>CGPA: 7.47 | 2022 – 2026</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Higher Secondary Education (MPC)</h3>
+                        <p><strong>Bhashyam Junior College</strong>, Rajahmundry, Andhra Pradesh</p>
+                        <p>CGPA: 6.73 | 2020 – 2022</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills & Interests</h2>
+            <div class="skills-grid">
+                <div class="skill-category card">
+                    <h3><i class="fas fa-code"></i> Programming Languages</h3>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check-circle"></i> C</li>
+                        <li><i class="fas fa-check-circle"></i> C++</li>
+                        <li><i class="fas fa-check-circle"></i> Java</li>
+                        <li><i class="fas fa-check-circle"></i> Python</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category card">
+                    <h3><i class="fas fa-star"></i> Core Strengths</h3>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check-circle"></i> Communication</li>
+                        <li><i class="fas fa-check-circle"></i> Teamwork</li>
+                        <li><i class="fas fa-check-circle"></i> Adaptability</li>
+                        <li><i class="fas fa-check-circle"></i> Problem-solving</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category card">
+                    <h3><i class="fas fa-tools"></i> Basics & Tools</h3>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check-circle"></i> MS Excel</li>
+                        <li><i class="fas fa-check-circle"></i> PowerPoint</li>
+                        <li><i class="fas fa-check-circle"></i> Internet Research</li>
+                        <li><i class="fas fa-check-circle"></i> Documentation</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category card">
+                    <h3><i class="fas fa-lightbulb"></i> Interests & Learning</h3>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check-circle"></i> Product Success & Customer Experience</li>
+                        <li><i class="fas fa-check-circle"></i> Data Visualization Basics</li>
+                        <li><i class="fas fa-check-circle"></i> UI/UX Concepts</li>
+                        <li><i class="fas fa-check-circle"></i> Quick to learn new tools (Jira, Trello, Figma)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Experience & Achievements</h2>
+            <div class="card">
+                <h3>College Projects & Assignments</h3>
+                <p>Worked on college assignments/projects that required teamwork, documentation, and presentations. Delivered classroom presentations, gaining confidence in public speaking and communication.</p>
+            </div>
+            
+            <div class="card">
+                <h3>Student-Faculty Bridge Role</h3>
+                <p>Acted as a bridge between students and faculty. Coordinated assignment submissions and schedules. Improved communication and leadership skills through this responsibility.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <div class="container">
+            <h2 class="section-title">Technical Certifications</h2>
+            <div class="certifications">
+                <div class="cert-card">
+                    <h3>Cisco C++ Certification</h3>
+                    <p>Programming Language Certification</p>
+                </div>
+                
+                <div class="cert-card">
+                    <h3>Cisco Python Certification</h3>
+                    <p>Programming Language Certification</p>
+                </div>
+                
+                <div class="cert-card">
+                    <h3>Certiport IT Specialist</h3>
+                    <p>HTML-CSS and Java certifications</p>
+                </div>
+                
+                <div class="cert-card">
+                    <h3>HackerRank Certification</h3>
+                    <p>MySQL Basics Certification</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Objective Section -->
+    <section id="objective">
+        <div class="container">
+            <h2 class="section-title">Career Objective</h2>
+            <div class="objective-content card">
+                <p>Enthusiastic and adaptable undergraduate seeking a <span class="highlight">Product Success Intern</span> role to gain hands-on experience in customer success and product adoption. Eager to learn, contribute to team goals, and develop strong problem-solving and communication skills while supporting user satisfaction.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Inti Charan Teja. All Rights Reserved.</p>
+            <p>Designed with ❤ for Product Success Opportunities</p>
+        </div>
+    </footer>
+</body>
+</html>
